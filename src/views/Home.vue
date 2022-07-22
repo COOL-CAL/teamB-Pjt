@@ -1,11 +1,10 @@
 <template>
+  <div>message</div>
   <div>
-    message
+    <router-link :to="{ path: '/Map' }">
+      <button type="button">시작하기</button>
+    </router-link>
   </div>
-
-  <router-link :to="{ path: '/Map' }">
-    <button type="button">시작하기</button>
-  </router-link>
 </template>
 
 <script>
