@@ -8,8 +8,8 @@
     <input type="date" name="endDay">
     </div>
   <div>
-    <router-link :to="{ path: '/Option' }">
-      <button type="button">↓</button>
+    <router-link :to="{ path: '/List' }">
+      <button type="button">여행 찾기</button>
     </router-link>
   </div>
 </template>

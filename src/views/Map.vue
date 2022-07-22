@@ -14,7 +14,7 @@
     </select>
   </div>
   <div>
-    <router-link :to="{ path: '/Calender' }">
+    <router-link :to="{ path: '/Option' }">
       <button type="button">↓</button>
     </router-link>
   </div>
