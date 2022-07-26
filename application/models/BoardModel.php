@@ -3,14 +3,6 @@ namespace application\models;
 use PDO;
 
 class BoardModel extends Model {
-<<<<<<< HEAD
-    public function getCategoryList() {
-        $sql = "SELECT * FROM t_area";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
-
     public function boardInsert(&$param) {
         $sql = "INSERT INTO t_board
                 SET iuser = :iuser
@@ -31,7 +23,4 @@ class BoardModel extends Model {
         $stmt->execute();
         return intval($this->pdo->lastInsertId());
     }
-=======
-
->>>>>>> a7207435bf0ae46f1a0943d59e8094dd378f40e6
 }
