@@ -31,7 +31,7 @@ const routes = [
     name: 'list',
     component: List
   },
-]
+]//dasgsdgsdgasdg
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
