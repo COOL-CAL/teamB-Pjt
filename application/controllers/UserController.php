@@ -8,12 +8,13 @@ class UserController extends Controller{
       case _POST:
         $json = getJson();
         //아이디 중복 체크
-        if(!$this->model->selUser($json)){
+        if($this->model->selUser($json)){
+          return [_RESULT => 2];
+        }else{
           $json["pw"] = password_hash($json["pw"], PASSWORD_BCRYPT);
           return [_RESULT => $this->model->insUser($json)];
-        }else{
-          return [_RESULT => 0];
         }
+        return [_RESULT => 0];
     }
   }
 

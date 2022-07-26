@@ -34,7 +34,11 @@
             <div class="modal-body">
               <div><input v-model="user.email" type="email" placeholder="아이디" required></div>
               <div><input v-model="user.pw" type="password" placeholder="비밀번호" required></div>
-              <div><input type="password" placeholder="비밀번호 확인" required></div>
+              <div>
+                <input v-model="user.pwCheck" type="password" placeholder="비밀번호 확인" required>
+                <div v-show="user.pw===user.pwCheck">비밀번호가 일치합니다.</div>
+                <div v-show="user.pw!==user.pwCheck">비밀번호가 일치하지 않습니다.</div>
+              </div>
               <div><input v-model="user.nm" type="text" placeholder="이름" required></div>
               <div><input v-model="user.nick" type="text" placeholder="닉네임"></div>
               <div>
@@ -58,7 +62,7 @@
             <div class="modal-footer">
               <div v-if="join" class="modal-login-button">
                 <slot name="footer">
-                  <button type="submit" @click="$emit('close'); showLogin();">회원가입</button>
+                  <button type="submit" v-bind:disabled="user.pw!==user.pwCheck" @click="$emit('close'); showLogin();">회원가입</button>
                   <button type="button" @click="$emit('close'); showLogin();">취소</button>
                 </slot>
               </div>
@@ -85,6 +89,7 @@ export default {
       user: {
         email: 'ga243@naver.com',
         pw: '123',
+        pwCheck: '',
         nm: '123',
         nick: 'www',
         gender: 0,
@@ -115,8 +120,10 @@ export default {
       const res = await this.$post('/user/join', this.user);
       if(res.result === 1){
         this.$swal.fire('회원가입 되었습니다!', '', 'success');
-      }else{
+      }else if(res.result === 2){
         this.$swal.fire('중복되는 아이디가 있습니다.', '', 'error');
+      }else{
+        this.$swal.fire('로그인할 수 없습니다.', '', 'error');
       }
     },
     async loginForm(){
